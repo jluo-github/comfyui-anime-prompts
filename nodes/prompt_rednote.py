@@ -1,8 +1,6 @@
 """
-AnimePromptRedNote node for ComfyUI.
-
-Generates prompts with the RedNote (XiaoHongShu) "Pretty/Broken" aesthetic.
-Features mood adjustment, style system lock, and pink-purple-white theme enforcement.
+AnimePromptRedNote node for ComfyUI - ARCHITECT FIXED VERSION.
+Optimized prompt assembly to prevent 'One Color' bleeding.
 """
 
 import random
@@ -29,26 +27,7 @@ from ..core.rednote_utils import (
 class AnimePromptRedNote:
     """
     Generate prompts with RedNote "Pretty/Broken" aesthetic.
-
-    Features:
-    - Mood Level (0.0-1.0): Adjust from "obedient/white" to "stubborn/purple"
-    - Style Lock: Automatically apply pink-purple-white theme
-    - Clean Output: Blocks mascara, bandaids, messy makeup
-    - Decoupled Architecture: Strict prompt assembly order
-
-    Inputs:
-        prompt_file: Character TXT file
-        index: Prompt index
-        mode: sequential or random
-        mood_level: Emotion intensity (0.0=white/dreaming, 1.0=purple/broken)
-        enable_style_lock: Apply RedNote aesthetic suffix
-        random_action/background/camera: Dynamic generation options
-
-    Outputs:
-        prompt: Complete positive prompt with style lock
-        negative: Complete negative prompt with blocks
-        character_name: Character name from file
-        mood_tags: The mood-specific tags applied
+    FIX 02/02/2026: Re-ordered prompt assembly to prioritize Character details.
     """
 
     CATEGORY = "prompt/anime"
@@ -132,9 +111,6 @@ class AnimePromptRedNote:
     ) -> tuple[str, str, str, str]:
         """
         Generate a prompt with RedNote aesthetic.
-
-        Returns:
-            Tuple of (prompt, negative, character_name, mood_tags).
         """
         file_path = get_prompt_file_path(prompt_file)
 
@@ -149,7 +125,6 @@ class AnimePromptRedNote:
         total = len(prompts)
         random.seed(seed)
 
-        # Select prompt
         if mode == "random":
             selected_index = random.randint(0, total - 1)
         else:
@@ -159,10 +134,8 @@ class AnimePromptRedNote:
 
         # --- 1. PREPARE COMPONENTS ---
 
-        # Mood (Pure Expression)
         mood_tags = get_mood_prompt(mood_level)
 
-        # Palette (Lighting/Color/Clothes)
         palette_bg = ""
         palette_clothes = ""
         if enable_style_lock:
@@ -170,10 +143,8 @@ class AnimePromptRedNote:
             palette_bg = palette_dict.get("bg", "")
             palette_clothes = palette_dict.get("clothes", "")
 
-        # Character Tags (Cleaned)
         raw_char_tags = entry.tags.strip().rstrip(",")
 
-        # Random Elements
         random_tags = []
         if random_action:
             random_tags.append(random.choice(ACTIONS))
@@ -182,7 +153,6 @@ class AnimePromptRedNote:
         if random_camera:
             random_tags.append(random.choice(CAMERA_EFFECTS))
 
-        # Combine Character + Random + Custom
         full_char_list = [raw_char_tags] + random_tags
         if custom_positive.strip():
             full_char_list.append(custom_positive.strip().lstrip(",").strip())
@@ -190,38 +160,36 @@ class AnimePromptRedNote:
         character_tags = ", ".join(filter(None, full_char_list))
 
         # --- 2. CLEANING LOGIC ---
-        # Strip static lighting tags to prevent "whiteout"
         for tag in ["bloom", "dreamy atmosphere", "soft lighting"]:
             character_tags = character_tags.replace(tag, "")
-
-        # Additional cleanup of double commas
         character_tags = character_tags.replace(", ,", ",").strip(", ")
 
-        # --- 3. FINAL ASSEMBLY ---
-        # Order: Masterpiece -> Palette BG -> Character -> Palette Clothes -> Mood -> Suffix
+        # --- 3. ARCHITECT FIXED ASSEMBLY ---
+        # Old Logic: Background -> Char -> Clothes (Caused bleeding)
+        # New Logic: Char -> Mood -> Background -> Suffix (Preserves Char details)
 
         parts: list[str] = []
 
-        # Prefix
+        # 1. Quality & Masterpiece
         parts.append("masterpiece, best quality")
 
-        # Palette BG (Atmosphere)
-        if palette_bg:
-            parts.append(palette_bg)
-
-        # Character (Subject + Action + Scene)
+        # 2. Character Logic (Subject First!)
         if character_tags:
             parts.append(character_tags)
 
-        # Palette Clothes (Contrast)
-        if palette_clothes:
-            parts.append(palette_clothes)
-
-        # Mood (Expression)
+        # 3. Mood (Expression)
         parts.append(mood_tags)
 
-        # Suffix (System)
+        # 4. Style Lock (Atmosphere & Palette)
+        # We append background LAST so it wraps the scene, not the girl
         if enable_style_lock:
+            if palette_bg:
+                parts.append(palette_bg)
+            # Only add palette clothes if they don't conflict,
+            # but usually better to leave them out if Char has specific clothes.
+            # We will include them softly here.
+            if palette_clothes:
+                parts.append(palette_clothes)
             parts.append(REDNOTE_POSITIVE_SUFFIX.lstrip(", ").strip())
 
         final_prompt = ", ".join(filter(None, parts))
@@ -229,7 +197,6 @@ class AnimePromptRedNote:
         # --- NEGATIVE PROMPT ---
         base_negative = custom_negative.strip()
         if enable_style_lock:
-            # Add RedNote negative blocks
             final_negative = (
                 REDNOTE_NEGATIVE_SUFFIX + ", " + base_negative.lstrip(", ")
             ).strip(", ")
