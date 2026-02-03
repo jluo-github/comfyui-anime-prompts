@@ -54,6 +54,7 @@ ACTIONS: Final[list[str]] = [
     "eating strawberry crepe, holding food, puffy cheeks, happy expression, cream on nose",
     "drinking bubble tea, holding cup, straw in mouth, looking at viewer, cute",
     "eating ice cream, licking, cone in hand, summer, sweet, happy smile",
+    "cooking, stirring, eggs, messy kitchen, confused",
     # --- 💫 Girly Poses ---
     "peace sign, winking, tilting head, playful smile, looking at viewer",
     "holding hair, wind blowing, eyes closed, soft smile, gentle",
@@ -67,7 +68,7 @@ ACTIONS: Final[list[str]] = [
     "lying down, staring blankly, arm over eyes, exhausted, melancholic",
     "in rain, wet hair, wet clothes, looking up at sky, melancholic",
     # --- 🌸 Soft / Dreamy ---
-    "reaching for falling petals, wind in hair, soft smile, gentle",
+    "reaching for falling petals, wind in hair, gentle",
     "holding flower, smelling, eyes closed, peaceful, delicate",
     "gazing at sunset, profile view, wind, contemplative, serene",
     # --- 🐱 Cozy ---
