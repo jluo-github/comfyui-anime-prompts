@@ -20,9 +20,9 @@ Custom ComfyUI nodes for loading anime character prompts with **dynamic generati
 git clone https://github.com/jluo-github/comfyui-anime-prompts.git ComfyUI/custom_nodes/comfyui-anime-prompts
 ```
 
-A sample file (`sample_1girl_v1.txt`) with 100 anime characters is included for testing.
+Sample files (`sample_1girl_v1.txt` and `style_names_v1.txt`) are included in the `prompts/` folder for testing.
 
-1. (Optional) Add your own TXT files to the plugin directory
+1. (Optional) Add your own TXT files to the `prompts/` directory
 2. Restart ComfyUI
 
 ## 📸 Workflow Examples
@@ -31,9 +31,9 @@ A sample file (`sample_1girl_v1.txt`) with 100 anime characters is included for 
 
 Use **Anime Prompt Loader** for single image generation with dynamic elements.
 
-![Single Prompt Workflow](workflow.jpg)
+![Single Prompt Workflow](assets/workflow.jpg)
 
-📥 **Download**: [anime_prompts_workflow.json](anime_prompts_workflow.json)
+📥 **Download**: [anime_prompts_workflow.json](workflows/anime_prompts_workflow.json)
 
 ---
 
@@ -41,9 +41,19 @@ Use **Anime Prompt Loader** for single image generation with dynamic elements.
 
 Use **Anime Prompt Batch** for generating multiple unique images at once.
 
-![Batch Prompt Workflow](workflow_batch.jpg)
+![Batch Prompt Workflow](assets/workflow_batch.jpg)
 
-📥 **Download**: [anime_prompts_batch_workflow.json](anime_prompts_batch_workflow.json)
+📥 **Download**: [anime_prompts_batch_workflow.json](workflows/anime_prompts_batch_workflow.json)
+
+---
+
+### RedNote Style Workflow (New!)
+
+Use **Anime Prompt RedNote** for highly aesthetic, social-media style generations with managed presets.
+
+![RedNote Workflow](assets/workflow_rednote.jpg)
+
+📥 **Download**: [anime_prompts_rednote_style_workflow.json](workflows/anime_prompts_rednote_style_workflow.json)
 
 ---
 
@@ -51,9 +61,9 @@ Use **Anime Prompt Batch** for generating multiple unique images at once.
 
 Use **Anime Prompt Combiner** to combine characters from one file with styles from another.
 
-![Combiner Workflow](workflow_combiner.jpg)
+![Combiner Workflow](assets/workflow_combiner.jpg)
 
-📥 **Download**: [anime_prompts_combiner_workflow.json](anime_prompts_combiner_workflow.json)
+📥 **Download**: [anime_prompts_combiner_workflow.json](workflows/anime_prompts_combiner_workflow.json)
 
 ---
 
@@ -185,12 +195,12 @@ hakurei reimu,touhou,1girl,brown hair,red eyes,hair bow	博丽灵梦
 
 When enabled, these elements are **randomly added** to each prompt:
 
-### Actions (21)
-- Cute eating: toast, crepe, bubble tea, ice cream
-- Girly poses: peace sign, twirling, finger on lips
-- Emotional: crying, hugging knees, lonely
-- Soft/dreamy: reaching for petals, holding flower
-- Cozy: sleeping, hugging plushie, holding cat
+### Actions (55+)
+- **Daily Life**: Reading, smartphone, headphones, school bag
+- **Motion**: Running, jumping, reaching out, dynamic poses
+- **Emotions**: Laughing, surprised, annoyed, shy, determined
+- **Cozy/Resting**: Sleeping, hugging plushie, sitting, lying on grass
+- **Cute/Girly**: Eating toast, peace sign, twirling
 
 ### Backgrounds (14)
 - Libraries, cyberpunk streets, fantasy forests

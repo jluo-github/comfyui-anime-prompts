@@ -18,8 +18,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/JL/comfyui-anime-prompts"
-Repository = "https://github.com/JL/comfyui-anime-prompts"
+Homepage = "https://github.com/jluo-github/comfyui-anime-prompts"
+Repository = "https://github.com/jluo-github/comfyui-anime-prompts"
 
 [build-system]
 requires = ["hatchling"]

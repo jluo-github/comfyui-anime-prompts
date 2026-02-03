@@ -5,28 +5,48 @@ RedNote (XiaoHongShu) Aesthetic Utilities - ARCHITECT PURE COMBINER MATCH.
 from typing import Final
 
 # --- 1. CLEAN NEGATIVE PROMPT ---
-REDNOTE_NEGATIVE_SUFFIX: Final[str] = (
-    "worst quality, low quality, normal quality, lowres, anatomical nonsense, "
+# --- 1. CLEAN NEGATIVE PROMPT ---
+# Base Quality Negatives (Can be swapped if preset has own negatives)
+REDNOTE_NEG_BASE: Final[str] = (
+    "worst quality, low quality, normal quality, lowres, anatomical nonsense, conjoined,bad ai-generated, plastic hair, plastic skin, "
     "artistic error, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, "
     "cropped, jpeg artifacts, signature, watermark, username, blurry, artist name, "
     "text, error, 3d, realistic, photo, real life, bad proportions, muscle, muscular"
-    "(large breasts:1.5), (huge breasts:1.5), (cleavage:1.4), nsfw, nude, "
+)
+
+# Safety/NSFW Negatives (ALWAYS APPLIED)
+REDNOTE_NEG_SAFETY: Final[str] = (
+    "(large breasts:1.5), (big breasts:1.5), (cleavage:1.4), nsfw, nude, "
     "(nipples:1.5), (visible nipples:1.4), (areola:1.5), "
     "(see-through:1.4), (transparent:1.4), (child:1.4), (loli:1.4), "
     "(rating_explicit:1.3), (rating_questionable:1.3), "
-    "(mascara:1.5), (bandaid:1.5), (bandage:1.5), (messy makeup:1.3), "
+    "(mascara:1.5), (bandaid:1.5), (bandage:1.5), (messy makeup:1.3)"
 )
+
+# Combined for backward compatibility
+REDNOTE_NEGATIVE_SUFFIX: Final[str] = REDNOTE_NEG_BASE + ", " + REDNOTE_NEG_SAFETY
 
 # --- 2. POSITIVE SUFFIX (Pure & Safe) ---
 # NO STYLE WORDS. Just Body + Clothes + Safety.
 # This allows the "Dynamic Engine" from the Node to control the art style 100%.
-REDNOTE_POSITIVE_SUFFIX: Final[str] = (
+
+# Distinct Style Tags (Can be swapped out)
+REDNOTE_STYLE: Final[str] = (
+    ", pastel colors, dreamy atmosphere, ethereal, delicate, 4k, high resolution, ultra-detailed, scenery"
+)
+
+# Character/Safety Tags (Always kept)
+REDNOTE_CHARACTER: Final[str] = (
     ", (perfect cute face:1.4), (beautiful detailed eyes:1.3), (sparkling eyes:1.3), "
-    "(flat chest:1.2), (adult:1.2), (skinny:1.1), "
-    "messy hair, "
-    "(white dress:1.1), (clothed:1.1), "
+    "(flat chest:1.2), (small breasts:1.2), (mature:1.2), (skinny:1.1), (collar_bone:1.5), "
+    "messy hair, big fluffy hair, large ribbons, fluffy volume, "
+    "(white lace dress:1.1), (white shirt with nude bra underneath:1.1), (layered dress:1.1), (clothed:1.1), "
     "rating_safe"
 )
+
+# Combined for backward compatibility
+REDNOTE_POSITIVE_SUFFIX: Final[str] = REDNOTE_STYLE + REDNOTE_CHARACTER
+
 
 # --- 3. MOOD PROMPTS ---
 def get_mood_prompt(level: float) -> str:
@@ -41,13 +61,26 @@ def get_mood_prompt(level: float) -> str:
     else:
         return "(stubborn:1.5), (pouting:1.4), (grumpy:1.4), (angry:1.2), (looking away:1.1)"
 
+
 # --- 4. COMPATIBILITY STUBS ---
-def get_random_palette() -> dict[str, str]: return {"bg": "", "clothes": ""}
-def get_weighted_color_tag(tag: str) -> str: return tag
+def get_random_palette() -> dict[str, str]:
+    return {"bg": "", "clothes": ""}
+
+
+def get_weighted_color_tag(tag: str) -> str:
+    return tag
+
+
 def apply_rednote_style(positive: str, negative: str) -> tuple[str, str]:
     return positive + REDNOTE_POSITIVE_SUFFIX, negative + ", " + REDNOTE_NEGATIVE_SUFFIX
-def filter_characters(*args, **kwargs): return []
+
+
+def filter_characters(*args, **kwargs):
+    return []
+
+
 AESTHETIC_KEYWORDS = []
 EXCLUDE_KEYWORDS = []
 
-if __name__ == "__main__": pass
+if __name__ == "__main__":
+    pass

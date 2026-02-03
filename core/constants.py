@@ -4,7 +4,9 @@ import os
 from typing import Final
 
 # Directory containing prompt files
-PROMPT_DIR: Final[str] = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+PROMPT_DIR: Final[str] = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "prompts"
+)
 
 # --- 1. CORE QUALITY TAGS ---
 QUALITY_TAGS: Final[str] = (
@@ -61,6 +63,29 @@ ACTIONS: Final[list[str]] = [
     "finger on lips, shy expression, blushing, looking away, embarrassed",
     "stretching arms up, yawning, sleepy eyes, messy hair, morning",
     "twirling, spinning, skirt flowing, happy, joyful expression",
+    # --- 📚 Daily Life (New) ---
+    "reading book, sitting on bench, focused, glasses, library background",
+    "looking at smartphone, scrolling, holding phone with both hands, glowing screen",
+    "wearing headphones, listening to music, eyes closed, humming, vibing",
+    "writing in notebook, holding pen, thinking, desk, study limit",
+    "carrying school bag, walking to school, looking back, waving",
+    "adjusting glasses, serious expression, smart, looking at viewer",
+    "putting on makeup, holding lipstick, mirror reflection, getting ready",
+    # --- 🏃 Motion (New) ---
+    "running, dynamic pose, rushing, toast in mouth, late",
+    "jumping, mid-air, happy, arms up, energetic, blue sky",
+    "walking, looking back, holding hands (POV), date, smiling",
+    "reaching out, hand towards viewer, longing, desperate",
+    "leaning forward, looking closely, curious, big eyes",
+    "turning around, hair flip, surprised, wide eyes, dynamic hair",
+    # --- 😠 Emotions (New) ---
+    "laughing, hand over mouth, closed eyes, tears of joy",
+    "surprised, gasping, hand on chest, wide eyes, mouth open",
+    "annoyed, crossing arms, pouting, looking away, tsundere",
+    "daydreaming, looking out window, chin in hand, bored, clouds",
+    "scared, shivering, holding knees, hiding, wide eyes",
+    "determined, clenched fist, serious eyes, intense stare, wind",
+    "confused, tilting head, question mark, finger on chin",
     # --- 💔 Broken / Emotional ---
     "crying, tears streaming, red eyes, wiping tears, sad, looking down",
     "hugging knees, head down, lonely, empty gaze, vulnerable",
@@ -71,10 +96,14 @@ ACTIONS: Final[list[str]] = [
     "reaching for falling petals, wind in hair, gentle",
     "holding flower, smelling, eyes closed, peaceful, delicate",
     "gazing at sunset, profile view, wind, contemplative, serene",
-    # --- 🐱 Cozy ---
+    "praying, hands clasped, eyes closed, holy, light rays",
+    # --- 🐱 Cozy / Resting ---
     "sleeping, head on arms, peaceful, drooling slightly, cute",
     "hugging plushie, burying face, oversized hoodie, cozy, warm",
     "holding cat, nuzzling, soft expression, cuddling pet",
+    "sitting on chair, legs crossed, relaxed, tea cup",
+    "leaning on wall, waiting, cool pose, one leg up",
+    "lying on grass, books scattered, looking at sky, summer afternoon",
 ]
 
 # --- 6. MATCHING BACKGROUNDS (No Magic, Real Places) ---
@@ -92,7 +121,7 @@ BACKGROUNDS: Final[list[str]] = [
     "living room, sofa, television, coffee table, sunlight through curtains",
     "bathroom, tiled walls, bathtub, mirror, steam, soft lighting",
     # --- 🏙️ City & Mood ---
-    "rainy city street, reflection in puddles, neon lights, night, atmospheric",
+    "rainy city street, reflection in puddles, night, atmospheric",
     "convenience store front, bright lights, night, glass door, shelves",
     "rooftop at sunset, chain link fence, warm sky, city skyline, wind",
     "train station platform, waiting area, empty seats, evening light, nostalgic",
@@ -104,8 +133,6 @@ CAMERA_EFFECTS: Final[list[str]] = [
     "from below, looking up, dramatic angle",
     "close-up, portrait, bokeh, focus on face",
     "wide shot, full body, distant view",
-    "soft lighting, backlight, rim light, warm tones",
-    "soft focus, bloom, dreamy, film grain",
     "side view, profile, wind, hair flowing",
     "pov, first person view, intimate, close",
 ]
