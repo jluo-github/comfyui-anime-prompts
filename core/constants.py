@@ -49,7 +49,7 @@ NEGATIVE_PRESETS: Final[dict[str, str]] = {
     "gothic": f"{STANDARD_NEGATIVE}, bright, pastel, cheerful, sunshine, simple background",
 }
 
-# --- 5. DYNAMIC ACTIONS (Girly, Cute, Emotional - Pose/Expression Only) ---
+# --- 5. DYNAMIC ACTIONS ---
 ACTIONS: Final[list[str]] = [
     # --- 🍞 Cute Eating ---
     "eating toast, holding toast, biting, crumbs on cheek, messy hair, happy",
@@ -63,7 +63,7 @@ ACTIONS: Final[list[str]] = [
     "finger on lips, shy expression, blushing, looking away, embarrassed",
     "stretching arms up, yawning, sleepy eyes, messy hair, morning",
     "twirling, spinning, skirt flowing, happy, joyful expression",
-    # --- 📚 Daily Life (New) ---
+    # --- 📚 Daily Life ---
     "reading book, sitting on bench, focused, glasses, library background",
     "looking at smartphone, scrolling, holding phone with both hands, glowing screen",
     "wearing headphones, listening to music, eyes closed, humming, vibing",
@@ -71,14 +71,14 @@ ACTIONS: Final[list[str]] = [
     "carrying school bag, walking to school, looking back, waving",
     "adjusting glasses, serious expression, smart, looking at viewer",
     "putting on makeup, holding lipstick, mirror reflection, getting ready",
-    # --- 🏃 Motion (New) ---
+    # --- 🏃 Motion ---
     "running, dynamic pose, rushing, toast in mouth, late",
     "jumping, mid-air, happy, arms up, energetic, blue sky",
     "walking, looking back, holding hands (POV), date, smiling",
     "reaching out, hand towards viewer, longing, desperate",
     "leaning forward, looking closely, curious, big eyes",
     "turning around, hair flip, surprised, wide eyes, dynamic hair",
-    # --- 😠 Emotions (New) ---
+    # --- 😠 Emotions ---
     "laughing, hand over mouth, closed eyes, tears of joy",
     "surprised, gasping, hand on chest, wide eyes, mouth open",
     "annoyed, crossing arms, pouting, looking away, tsundere",
@@ -104,6 +104,12 @@ ACTIONS: Final[list[str]] = [
     "sitting on chair, legs crossed, relaxed, tea cup",
     "leaning on wall, waiting, cool pose, one leg up",
     "lying on grass, books scattered, looking at sky, summer afternoon",
+    # --- 🎨 Creative / Work ---
+    "making pottery, pottery wheel, wet clay, dirty hands, wearing apron, focused expression",
+    "coding, sitting at desk, dual monitors, computer, mechanical keyboard, glowing screen, programming",
+    # --- 🛌 Bed / Relaxing ---
+    "reading in bed, lying down, holding book, bedside lamp, cozy atmosphere, relaxed",
+    "holding pillow, hugging pillow, lying on side, on bed, curved body, comfortable, sleepy",
 ]
 
 # --- 6. MATCHING BACKGROUNDS (No Magic, Real Places) ---
@@ -136,3 +142,15 @@ CAMERA_EFFECTS: Final[list[str]] = [
     "side view, profile, wind, hair flowing",
     "pov, first person view, intimate, close",
 ]
+
+# --- 8. FLUX / NATURAL LANGUAGE TEMPLATES ---
+FLUX_PREFIX: Final[str] = "A high-quality anime illustration of"
+FLUX_STYLE_PREFIX: Final[str] = "The art style is"
+
+# Connectors to glue the random parts naturally
+FLUX_CONNECTORS: Final[dict[str, str]] = {
+    "action": "She is currently",
+    "background": "The scene takes place in",
+    "camera": "The image is captured",
+    "mood": "Her expression is",
+}

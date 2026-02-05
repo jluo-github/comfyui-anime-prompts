@@ -5,7 +5,6 @@ RedNote (XiaoHongShu) Aesthetic Utilities - ARCHITECT PURE COMBINER MATCH.
 from typing import Final
 
 # --- 1. CLEAN NEGATIVE PROMPT ---
-# --- 1. CLEAN NEGATIVE PROMPT ---
 # Base Quality Negatives (Can be swapped if preset has own negatives)
 REDNOTE_NEG_BASE: Final[str] = (
     "worst quality, low quality, normal quality, lowres, anatomical nonsense, conjoined,bad ai-generated, plastic hair, plastic skin, "
@@ -16,7 +15,7 @@ REDNOTE_NEG_BASE: Final[str] = (
 
 # Safety/NSFW Negatives (ALWAYS APPLIED)
 REDNOTE_NEG_SAFETY: Final[str] = (
-    "(large breasts:1.5), (big breasts:1.5), (cleavage:1.4), nsfw, nude, "
+    "(large breasts:1.5), (big breasts:1.5), (cleavage:1.4), nsfw, nude, (bone:1.1), (skeleton:1.5), "
     "(nipples:1.5), (visible nipples:1.4), (areola:1.5), "
     "(see-through:1.4), (transparent:1.4), (child:1.4), (loli:1.4), "
     "(rating_explicit:1.3), (rating_questionable:1.3), "
@@ -38,9 +37,9 @@ REDNOTE_STYLE: Final[str] = (
 # Character/Safety Tags (Always kept)
 REDNOTE_CHARACTER: Final[str] = (
     ", (perfect cute face:1.4), (beautiful detailed eyes:1.3), (sparkling eyes:1.3), "
-    "(flat chest:1.2), (small breasts:1.2), (mature:1.2), (skinny:1.1), (collar_bone:1.5), "
-    "messy hair, big fluffy hair, large ribbons, fluffy volume, "
-    "(white lace dress:1.1), (white shirt with nude bra underneath:1.1), (layered dress:1.1), (clothed:1.1), "
+    "(flat chest:1.2), (small breasts:1.2), (mature:1.2), (skinny:1.3), (collar_bone:1.2), "
+    "messy hair, big fluffy hair, big fluffy curls, large ribbons, fluffy volume, "
+    "(white lace dress:1), (layered dress:1), (white shirt with nude bra underneath:1), (clothed:1.1), "
     "rating_safe"
 )
 
@@ -55,7 +54,7 @@ def get_mood_prompt(level: float) -> str:
     elif level < 0.4:
         return "(expressionless:1.3), (neutral face:1.2), (serious:1.2), (looking down:1.1)"
     elif level < 0.6:
-        return "(empty eyes:1.2), (hollow gaze:1.1), (dissociation:1.1)"
+        return "(stoned face:1.3), (hollow gaze:1.1), (dissociation:1.1)"
     elif level < 0.8:
         return "(annoyed expression:1.3), (glaring:1.2), (displeased:1.2)"
     else:
