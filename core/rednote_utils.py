@@ -36,10 +36,9 @@ REDNOTE_STYLE: Final[str] = (
 
 # Character/Safety Tags (Always kept)
 REDNOTE_CHARACTER: Final[str] = (
-    ", (perfect cute face:1.4), (beautiful detailed eyes:1.3), (sparkling eyes:1.3), "
+    "(solo:1.5), (perfect cute face:1.4), (beautiful detailed eyes:1.3), (sparkling eyes:1.3), "
     "(flat chest:1.2), (small breasts:1.2), (mature:1.2), (skinny:1.3), (collar_bone:1.2), "
     "messy hair, big fluffy hair, big fluffy curls, large ribbons, fluffy volume, "
-    "(white lace dress:1), (layered dress:1), (white shirt with nude bra underneath:1), (clothed:1.1), "
     "rating_safe"
 )
 
